@@ -15,8 +15,5 @@
   "files": [
     "data.json"
   ],
-  "outputDirectory": "public",
-  "env": {
-    "NODE_ENV": "production"
-  }
+  "outputDirectory": "public"
 }
