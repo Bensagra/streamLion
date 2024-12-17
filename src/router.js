@@ -1,21 +1,18 @@
 import { Router } from "express";
+import path from "path";
 import fs from "fs";
-
-
-import path from 'path';
-
-
 
 const router = Router();
 
 router.get("/", (req, res) => {
     try {
-        let usersPath = path.join(process.cwd(), './data.json');
+        // Construye la ruta absoluta correctamente
+        const usersPath = path.join(process.cwd(), "public", "data.json");
+        const data = JSON.parse(fs.readFileSync(usersPath, "utf-8"));
 
-        let data = JSON.parse(fs.readFileSync(usersPath, 'utf-8'));
-        res.json(data).status(200);
+        res.status(200).json(data);
     } catch (error) {
-        res.json({ error: error.message }).status(500);
+        res.status(500).json({ error: error.message });
     }
 });
 
