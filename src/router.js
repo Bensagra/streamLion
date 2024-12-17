@@ -5,7 +5,7 @@ const router = Router();
 router.get("/", async (req, res) => {
     try {
         // Realiza la petición directamente a /data.json
-        const response = await fetch("https://your-app-name.vercel.app/data.json");
+        const response = await fetch("https://stream-lion.vercel.app/data.json");
 
         // Verifica si la petición fue exitosa
         if (!response.ok) {
