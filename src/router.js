@@ -1,18 +1,16 @@
 import { Router } from "express";
-import fs from "fs";
-
-
-
-
 
 const router = Router();
 
 router.get("/", (req, res) => {
     try {
-        let data = JSON.parse(fs.readFileSync('../public/data.json', 'utf-8'));
-        res.json(data).status(200);
+        const dataUrl = `${req.protocol}://${req.get("host")}/data.json`;
+        fetch(dataUrl)
+            .then((response) => response.json())
+            .then((data) => res.status(200).json(data))
+            .catch((error) => res.status(500).json({ error: error.message }));
     } catch (error) {
-        res.json({ error: error.message }).status(500);
+        res.status(500).json({ error: error.message });
     }
 });
 
