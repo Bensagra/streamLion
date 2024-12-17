@@ -1,18 +1,21 @@
 import { Router } from "express";
-import fs from "fs";
-
-
-
-
 
 const router = Router();
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
     try {
-        let data = JSON.parse(fs.readFileSync('../public/data.json', 'utf-8'));
-        res.json(data).status(200);
+        // Realiza la petición directamente a /data.json
+        const response = await fetch("https://your-app-name.vercel.app/data.json");
+
+        // Verifica si la petición fue exitosa
+        if (!response.ok) {
+            throw new Error("No se pudo obtener el archivo JSON");
+        }
+
+        const data = await response.json();
+        res.status(200).json(data);
     } catch (error) {
-        res.json({ error: error.message }).status(500);
+        res.status(500).json({ error: error.message });
     }
 });
 
