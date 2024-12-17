@@ -11,7 +11,5 @@
       "src": "/(.*)",
       "dest": "/src/index.js"
     }
-  ],
-  "files": [
-    "data.json"
-  ]}
+  ]
+}
