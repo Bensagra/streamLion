@@ -2,6 +2,7 @@ import { Router } from "express";
 import fs from "fs";
 
 
+import path from 'path';
 
 
 
@@ -9,6 +10,8 @@ const router = Router();
 
 router.get("/", (req, res) => {
     try {
+        let usersPath = path.join(process.cwd(), 'users.json');
+
         let data = JSON.parse(fs.readFileSync('../public/data.json', 'utf-8'));
         res.json(data).status(200);
     } catch (error) {
