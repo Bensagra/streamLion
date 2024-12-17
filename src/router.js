@@ -10,7 +10,7 @@ const router = Router();
 
 router.get("/", (req, res) => {
     try {
-        let usersPath = path.join(process.cwd(), '../public/data.json');
+        let usersPath = path.join(process.cwd(), './data.json');
 
         let data = JSON.parse(fs.readFileSync(usersPath, 'utf-8'));
         res.json(data).status(200);
